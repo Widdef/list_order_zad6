@@ -36,6 +36,7 @@ int main()
 		printf("9)Zapisz zawartosc listy z pliku\n");
 		printf("10)Wyswietl zawartosc listy\n");
 		printf("11)Znajdz element z wartownikiem\n");
+		printf("12)Usun element z wartownikiem\n");
 		printf("0)Wyjscie\n");
 		scanf("%d", &chose);
 		switch (chose)

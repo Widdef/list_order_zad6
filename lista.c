@@ -63,26 +63,26 @@ void list_delete_last(list **p)
 	if (*p != NULL)
 	{
 		list **marker = p;
-		while ((*marker)->next)
+		while ((*marker)->next->next)
 		{
 			marker = &(*marker)->next;
 		}
-		list *tmp = *marker;
-		(*p)->next = NULL;
+		list *tmp = (*marker)->next;
+		(*marker)->next = NULL;
 		free(tmp);
 	}
 }
 
 void list_show_first(list** p)
 {
-	printf("Pierwszy element: %d", (*p)->data);
+	printf("Pierwszy element: %d\n", (*p)->data);
 }
 
 void list_show_last(list** p) 
 {
 	while ((*p)->next != NULL)
 		p = &(*p)->next;
-	printf("Ostatni element %d", (*p)->data);
+	printf("Ostatni element %d\n", (*p)->data);
 }
 
 int list_find(list **p, int value)
@@ -98,6 +98,8 @@ int list_find(list **p, int value)
 			flag = 1;
 			break;
 		}
+		if ((*marker)->data > value)
+			break;
 		marker = &(*marker)->next;
 	}
 	if (flag)
@@ -113,7 +115,7 @@ void list_find_sentry(list **p, int value)
 {
 	if (*p == NULL)
 	{
-		printf("Lista jest pusta");
+		printf("Lista jest pusta\n");
 		return;
 	}
 	list **marker = p;
@@ -271,6 +273,7 @@ void list_find_delete_sentry(list **p, int value)
 	{
 		p = &(*p)->next;
 	}
+	(*marker)->next = NULL;
 	if ((*p)->next == new_el)
 		printf("Element nie istnieje\n");
 	else
@@ -279,7 +282,6 @@ void list_find_delete_sentry(list **p, int value)
 		(*p)->next = (*p)->next->next;
 		free(tmp);
 	}
-	(*marker)->next = NULL;
 	free(new_el);
 
 
