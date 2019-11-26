@@ -87,6 +87,7 @@ int main()
 			find_value(&find);
 			list_find_delete_sentry(&head, find);
 			system("PAUSE");
+			continue;
 		default:
 			continue;
 		}
